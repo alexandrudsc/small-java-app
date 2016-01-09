@@ -29,7 +29,7 @@ public class Main implements ActionListener {
     Frame f;
     
     // score management panel
-    RightPanel scorePanel;
+    RightPanel eastPanel;
     
     // input text
     EditText input;
@@ -62,10 +62,10 @@ public class Main implements ActionListener {
         // add south panel to main frame
         southPanelBuilder.addPanelToFrame("South", f);
         
-        // create score panel
-        scorePanel = new RightPanel();
-        scorePanel.setPreferredSize(new Dimension(RightPanel.PANEL_WIDTH,  RightPanel.PANEL_HEIGHT));
-        f.add("East", scorePanel);
+        // create east panel = score and human
+        eastPanel = new RightPanel();
+        eastPanel.setPreferredSize(new Dimension(RightPanel.PANEL_WIDTH,  RightPanel.PANEL_HEIGHT));
+        f.add("East", eastPanel);
         
         f.setVisible(true);
 
@@ -95,16 +95,16 @@ public class Main implements ActionListener {
                 break;
             case strCross:
                 // if semaphore is green and "Move" button was not pressed, mark as success and animate
-                if (s.isGreen() && !scorePanel.isMoving()){
-                    scorePanel.addSuccess();
-                    scorePanel.moveAndExit((long) (s.getSecWait() * 1000));
+                if (s.isGreen() && !eastPanel.isMoving()){
+                    eastPanel.addSuccess();
+                    eastPanel.moveAndExit((long) (s.getSecWait() * 1000));
                 }
                 else{
                     // if it was not green or already in move, mark as fail
-                    scorePanel.addFail();
-                    scorePanel.animateFail((long) (s.getSecWait() * 1000));
+                    eastPanel.addFail();
+                    eastPanel.animateFail((long) (s.getSecWait() * 1000));
                 }
-                scorePanel.repaint();
+                eastPanel.repaint();
                 break;
         }
     }
